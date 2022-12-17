@@ -10,6 +10,17 @@ use App\Models\User;
 
 class AuthController extends BaseController
 {
+    public function isonline(Request $request)
+    {
+        $sucess['status'] = $request->stat;
+        $fail['status'] = 0;
+        if($request->stat == 1){
+            return $this->sendResponse($sucess,"is online");
+        }else{
+            return $this->sendResponse($fail,"Wrong password");
+
+        }
+    }
     public function signin(Request $request)
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
